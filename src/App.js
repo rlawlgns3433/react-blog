@@ -8,21 +8,21 @@ function App() {
   //자주 바뀌는 중요한 데이터는 state로 저장
   let [따봉, 따봉변경] = useState(0);
 
-  function 제목바꾸기(){
-    var newArray = [...글제목]; // deep copy 그냥 copy하면 값 공유가 된다.
-    newArray[2] = '전남대학교 양식 맛집';
-    글제목변경(newArray);
-  }
+  // function 제목바꾸기(){
+  //   var newArray = [...글제목]; // deep copy 그냥 copy하면 값 공유가 된다.
+  //   newArray[2] = '전남대학교 양식 맛집';
+  //   글제목변경(newArray);
+  // }
 
-  function 순서바꾸기(){
-    var newArray = [...글제목];
-    var temp;
+  // function 순서바꾸기(){
+  //   var newArray = [...글제목];
+  //   var temp;
 
-    temp = newArray[1];
-    newArray[1] = newArray[2];
-    newArray[2] = temp;
-    글제목변경(newArray);
-  }
+  //   temp = newArray[1];
+  //   newArray[1] = newArray[2];
+  //   newArray[2] = temp;
+  //   글제목변경(newArray);
+  // }
 
   return (
     <div className="App">
@@ -31,9 +31,10 @@ function App() {
           개발 Blog
         </div> 
       </div>
+      <Modal/>{/* component */}
       <div class = "list">
-      <button onClick={제목바꾸기}>제목바꾸기</button>
-      <button onClick={순서바꾸기}>순서바꾸기</button>
+      {/* <button onClick={제목바꾸기}>제목바꾸기</button>
+      <button onClick={순서바꾸기}>순서바꾸기</button> */}
         <h3>{글제목[0]} <span onClick={()=>{ 따봉변경(따봉+1) }}>👍</span>{따봉}</h3>
         <p>2월 17일 발행</p>
         <hr/>
@@ -48,6 +49,22 @@ function App() {
         <p>2월 17일 발행</p>
         <hr/>
       </div>
+
+
+
+    </div>
+  );
+}
+
+function Modal(props){ /* 1. component 만들기 반복적으로 사용할 때 만듬
+                     2. 자주 바뀌는 UI를 사용할 때 만듬
+                     3. e다른 페이지 만들 때도 만듬
+  */
+  return(
+    <div class = "modal">
+      <h2>제목</h2>
+      <p>날짜</p>
+      <p>상세내용</p>
     </div>
   );
 }
