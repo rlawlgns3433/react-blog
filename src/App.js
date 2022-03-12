@@ -2,6 +2,51 @@
 import React,{useState} from 'react';
 import './App.css';
 
+class 날짜 extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {date : new Date()};
+  }
+  
+  render(){
+    return (
+      <div style={{alignItems:'end'}}>
+        <h1>{this.state.date.toLocaleDateString()}</h1>
+      </div>
+    );
+  }
+}
+
+class 시간 extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {date : new Date()};
+  }
+
+  componentDidMount(){
+    this.timerID = setInterval(
+      ()=> this.tick(), 1000
+    );
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.timerID);
+  }
+
+  tick(){
+    this.setState({
+      date : new Date()
+    });
+  }
+
+  render(){
+    return (
+      <h1>{this.state.date.toLocaleTimeString()}</h1>
+    );
+  }
+}
+
+
 function App() {
 
   let [글제목, 글제목변경] = useState(['전남대학교 한식 맛집','전남대학교 일식 맛집','전남대학교 중식 맛집']);
@@ -28,6 +73,7 @@ function App() {
   //   글제목변경(newArray);
   // }
 
+  var i =0;
   return (
     <div className="App">
       <div class = "black-nav">
@@ -35,27 +81,25 @@ function App() {
         Kenny's Blog
         </div> 
       </div>
+      <날짜/> <시간/>
       <Modal/>{/* component */}
       <div class = "list">
       {/* <button onClick={제목바꾸기}>제목바꾸기</button>
       <button onClick={순서바꾸기}>순서바꾸기</button> */}
         <h3>{글제목[0]} <span onClick={()=>{ 따봉변경(따봉+1) }}>👍</span>{따봉}</h3>
-        <p>2월 17일 발행</p>
+        <p>{발행날짜[i]}</p>
         <hr/>
       </div>
       <div class = "list">
         <h3>{글제목[1]}<span onClick={()=>{ 따봉변경(따봉+1) }}>👍</span>{따봉}</h3>
-        <p>2월 17일 발행</p>
+        <p>{발행날짜[i+1]}</p>
         <hr/>
       </div>
       <div class = "list">
         <h3>{글제목[2]}<span onClick={()=>{ 따봉변경(따봉+1) }}>👍</span>{따봉}</h3>
-        <p>2월 17일 발행</p>
+        <p>{발행날짜[i+2]}</p>
         <hr/>
       </div>
-
-
-
     </div>
   );
 
@@ -71,6 +115,8 @@ function App() {
     </div>
   );
 }
+
+
 }
 
 
