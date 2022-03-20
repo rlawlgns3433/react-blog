@@ -1,50 +1,8 @@
 /* eslint-disable */
 import React,{useState} from 'react';
 import './App.css';
+import Clock from './Component/Clock';
 
-class 날짜 extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {date : new Date()};
-  }
-  
-  render(){
-    return (
-      <div style={{alignItems:'end'}}>
-        <h1>{this.state.date.toLocaleDateString()}</h1>
-      </div>
-    );
-  }
-}
-
-class 시간 extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {date : new Date()};
-  }
-
-  componentDidMount(){
-    this.timerID = setInterval(
-      ()=> this.tick(), 1000
-    );
-  }
-
-  componentWillUnmount(){
-    clearInterval(this.timerID);
-  }
-
-  tick(){
-    this.setState({
-      date : new Date()
-    });
-  }
-
-  render(){
-    return (
-      <h1>{this.state.date.toLocaleTimeString()}</h1>
-    );
-  }
-}
 
 
 function App() {
@@ -81,7 +39,7 @@ function App() {
         Kenny's Blog
         </div> 
       </div>
-      <날짜/> <시간/>
+      <Clock/>
       <Modal/>{/* component */}
       <div class = "list">
       {/* <button onClick={제목바꾸기}>제목바꾸기</button>
@@ -91,7 +49,7 @@ function App() {
         <hr/>
       </div>
       <div class = "list">
-        <h3>{글제목[1]}<span onClick={()=>{ 따봉변경(따봉+1) }}>👍</span>{따봉}</h3>
+        <h3 e>{글제목[1]}<span onClick={()=>{ 따봉변경(따봉+1) }}>👍</span>{따봉}</h3>
         <p>{발행날짜[i+1]}</p>
         <hr/>
       </div>
@@ -103,7 +61,8 @@ function App() {
     </div>
   );
 
-  function Modal(){ /* 1. component 만들기 반복적으로 사용할 때 만듬
+
+function Modal(props){ /* 1. component 만들기 반복적으로 사용할 때 만듬
                      2. 자주 바뀌는 UI를 사용할 때 만듬
                      3. e다른 페이지 만들 때도 만듬
   */
@@ -122,3 +81,5 @@ function App() {
 
 
 export default App;
+
+
